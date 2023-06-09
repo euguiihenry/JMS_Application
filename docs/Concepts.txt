@@ -1,0 +1,22 @@
+* APP Test Classes: 
+	The JmsConsumer and JmsProducer are classes made to test how the messenger works using ApacheMQ and Java.
+	The code introduced on there were produced by ChatGPT.
+
+* APP Util Classes:
+	The classes implemented in there were:
+		Connection.
+		Consumer.
+		Producer.
+	The connection class was implemented with the idea to run every single time that a new client logs in on the application.
+	The consumer should call all the messages that were sent to server to and then display it on application.
+	The producer should send all the messages to server.
+	
+* APP View Classes:
+	This classes were made to implement the interface into the application.
+	The classes implemented in there were:
+		Login.
+		Room.
+	The login class should be responsible to logs the user with a new username into the application.
+	The room should run the consumer and producer methods to get and set the messages in the server and then display it on screen.
+	
+	
