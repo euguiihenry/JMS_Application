@@ -13,15 +13,10 @@ public class Consumer extends Link implements Runnable {
 		
 	/* Constructor:
 	=====================================================================*/
-		public Consumer() {
+		public Consumer(Link linkObj) {
+			this.linkObj = linkObj;
 			this.topic = this.linkObj.getTopic();
-			try {
-				this.consumer = this.linkObj.getSession().createConsumer(this.topic);
-				
-			} catch (JMSException e) {
-				this.errorObj.showError(e);
-				e.printStackTrace();
-			}
+			this.consumer = this.createConsumer();
 		}
 		
 	/* Methods:
@@ -30,8 +25,7 @@ public class Consumer extends Link implements Runnable {
 		=================================================================*/
 			public MessageConsumer createConsumer() {
 				try {
-					this.consumer = this.linkObj.getSession().createConsumer(this.topic);
-					return this.consumer;
+					return this.linkObj.getSession().createConsumer(this.topic);
 					
 				} catch (JMSException e) {
 					this.errorObj.showError(e);
@@ -43,24 +37,27 @@ public class Consumer extends Link implements Runnable {
 		/* Message Listener:
 		=================================================================*/
 			public void run() {
-				
-				/*try {
-					this.consumer.setMessageListener(new MessageListener() {
-						
-						public void onMessage(Message message) {
-							if (message instanceof TextMessage) {
-	                            TextMessage textMessage = (TextMessage) message;
-	                            String text;
-	                            text = textMessage.getText();
-								System.out.println("Received message: " + text);
-	                            
-	                        }
-						}
-					});
-				} catch (JMSException e) {
-					this.errorObj.showError(e);
-					e.printStackTrace();
-				}*/
+			    try {
+			        this.consumer.setMessageListener(new MessageListener() {
+			        	Error error;
+			            public void onMessage(Message message) {
+			                try {
+			                    if (message instanceof TextMessage) {
+			                        TextMessage textMessage = (TextMessage) message;
+			                        String text = textMessage.getText();
+			                        System.out.println("Received message: " + text);
+			                    }
+			                } catch (JMSException e) {
+			                    this.error.showError(e);
+			                    e.printStackTrace();
+			                }
+			            }
+			        });
+			    } catch (JMSException e) {
+			        this.errorObj.showError(e);
+			        e.printStackTrace();
+			    }
 			}
+
 			
 }

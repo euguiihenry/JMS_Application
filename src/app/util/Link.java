@@ -4,7 +4,7 @@ import javax.jms.*;
 import org.apache.activemq.*;
 import app.view.Error;
 
-public class Link extends Error{
+public class Link extends Error {
 	/* Global Variables: (The final variables displayed below should be inserted in an TXT file to be change when need without the need to restart the system.) 
 	=========================================================================================*/
 		private final String protocol = "tcp";
@@ -55,7 +55,6 @@ public class Link extends Error{
 			public void startSession() {
 				try {
 					this.session = this.connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-					
 				} catch (JMSException e) {
 					this.error.showError(e);
 					e.printStackTrace();
@@ -93,7 +92,7 @@ public class Link extends Error{
 				return this.session;
 			}
 			
-		/* Get Topic Destination:
+		/* Get Topic:
 		=====================================================================================*/
 			public Topic getTopic() {
 				return this.topic;
