@@ -20,7 +20,6 @@ public class Login extends javax.swing.JFrame{
         setTitle("CHAT JMS");
         setBounds(new java.awt.Rectangle(850, 350, 380, 280));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(350, 320));
         setResizable(false);
 
         Painel.setBackground(new java.awt.Color(243, 231, 223));
@@ -29,14 +28,15 @@ public class Login extends javax.swing.JFrame{
         Painel.setPreferredSize(new java.awt.Dimension(350, 320));
 
         chatIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("chat-icon.png"))); // NOI18N
-        chatIcon.setAlignmentX(50.0F);
+        chatIcon.setAlignmentX(44.0F);
         chatIcon.setAlignmentY(0.0F);
 
         Title.setFont(new java.awt.Font("Candara", 0, 30)); // NOI18N
         Title.setForeground(new java.awt.Color(27, 27, 27));
         Title.setText("CHAT JMS");
 
-        Subtitle.setText("Bem-vindo 🙂");
+        Subtitle.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        Subtitle.setText("Bem-vindo");
 
         username.setForeground(new java.awt.Color(153, 153, 153));
         username.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
@@ -65,29 +65,29 @@ public class Login extends javax.swing.JFrame{
         PainelLayout.setHorizontalGroup(
             PainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(PainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(chatIcon)
                     .addComponent(Title)
                     .addComponent(Subtitle)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(openChat, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48))
+                .addGap(50, 50, 50))
         );
         PainelLayout.setVerticalGroup(
             PainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(50, 50, 50)
                 .addComponent(chatIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Subtitle)
-                .addGap(28, 28, 28)
+                .addGap(30, 30, 30)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(openChat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         username.getAccessibleContext().setAccessibleName("adw");
@@ -104,7 +104,7 @@ public class Login extends javax.swing.JFrame{
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold> 
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
@@ -116,15 +116,14 @@ public class Login extends javax.swing.JFrame{
     	new Room().setVisible(true);
     }                                        
     
-    /*Main de teste*/
+    /*Main de teste
     public static void main(String args[]) {
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify                     
     private javax.swing.JPanel Painel;
