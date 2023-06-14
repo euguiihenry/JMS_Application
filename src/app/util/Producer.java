@@ -37,10 +37,32 @@ public class Producer extends Link implements Runnable {
 					return null;
 				}
 			}
+			
+		/* Method to Create Message:
+		=================================================================*/
+			public TextMessage createMessage(String messageTxt, String username) {
+				TextMessage message = null;
+				
+				try {
+					message = this.linkObj.getSession().createTextMessage();
+					message.setText(messageTxt);
+					//message.setStringProperty("Type", "Global");
+					message.setStringProperty("Sender", username);
+					producer.send(message);
+					
+				} catch (Exception e) {
+					this.errorObj.showError((JMSException) e);
+					System.exit(1);
+				}
+				
+				return message;
+				
+			}
+			
 		/* Method Run:
 		=================================================================*/
 			public void run() {
-				String message = "Hello, world!";
+				/*String message = "Hello, world!";
 				try {
 					TextMessage textMessage = this.linkObj.getSession().createTextMessage(message);
 					producer.send(textMessage);
@@ -49,7 +71,7 @@ public class Producer extends Link implements Runnable {
 				} catch (JMSException e) {
 					this.errorObj.showError(e);
 					e.printStackTrace();
-				}
+				}*/
 				
 			}
 	

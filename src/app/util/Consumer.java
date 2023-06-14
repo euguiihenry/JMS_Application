@@ -1,6 +1,7 @@
 package app.util;
 
 import javax.jms.*;
+import app.view.TemporaryInterface;
 import app.view.Error;
 
 public class Consumer extends Link implements Runnable {
@@ -10,13 +11,15 @@ public class Consumer extends Link implements Runnable {
 		Topic topic;
 		MessageConsumer consumer;
 		Error errorObj;
+		TemporaryInterface face;
 		
 	/* Constructor:
 	=====================================================================*/
-		public Consumer(Link linkObj) {
+		public Consumer(Link linkObj, TemporaryInterface face) {
 			this.linkObj = linkObj;
 			this.topic = this.linkObj.getTopic();
 			this.consumer = this.createConsumer();
+			this.face = face;
 		}
 		
 	/* Methods:
@@ -40,13 +43,17 @@ public class Consumer extends Link implements Runnable {
 			    try {
 			        this.consumer.setMessageListener(new MessageListener() {
 			        	Error error;
-			            public void onMessage(Message message) {
+			            public void onMessage(Message message) {			            	
 			                try {
-			                    if (message instanceof TextMessage) {
-			                        TextMessage textMessage = (TextMessage) message;
-			                        String text = textMessage.getText();
-			                        System.out.println("Received message: " + text);
-			                    }
+			                	TextMessage textMessage = (TextMessage) message;
+			                	String sender = textMessage.getStringProperty("Sender");
+			                	
+			                	String text = textMessage.getText();
+			                	String messageBody = "@" + sender + ":\n" + text;
+		                        
+			                	// Here it should call the method to show the message:
+			                	face.showMessage(messageBody);
+		                        
 			                } catch (JMSException e) {
 			                    this.error.showError(e);
 			                    e.printStackTrace();
