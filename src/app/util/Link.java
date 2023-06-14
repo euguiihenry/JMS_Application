@@ -72,9 +72,9 @@ public class Link extends Error {
 				}
 			}
 		
-		/* Starting Queue for Specific Destination:
+		/* Starting and Getting a Queue for Specific Destination:
 		=====================================================================================*/
-			public Queue specificConnection() {
+			public Queue getQueue() {
 				try {
 					Queue specificDestination = this.session.createQueue("specificDest");
 					return specificDestination;

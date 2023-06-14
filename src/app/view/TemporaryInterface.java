@@ -82,7 +82,7 @@ public class TemporaryInterface extends JFrame {
                 	producerClass.createMessage(message, producer);
                 } else {
                 	// It is necessary to implement the method to send a message to queue list.
-                	
+                	producerClass.sendPrivately(message, producer, consumer);
                 	//Then it should clean the field.
                 	textField2.setText("");
                 }
