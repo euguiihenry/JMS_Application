@@ -83,16 +83,6 @@ public class Producer extends Link implements Runnable {
 		/* Method Run:
 		=================================================================*/
 			public void run() {
-				/*String message = "Hello, world!";
-				try {
-					TextMessage textMessage = this.linkObj.getSession().createTextMessage(message);
-					producer.send(textMessage);
-					System.out.println("The message has been send");
-					
-				} catch (JMSException e) {
-					this.errorObj.showError(e);
-					e.printStackTrace();
-				}*/
 				
 			}
 	

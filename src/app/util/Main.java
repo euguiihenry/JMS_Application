@@ -4,6 +4,9 @@ import app.view.*;
 
 public class Main {
     public static void main(String[] args) {
+    	Login login = new Login();
+    	login.setVisible(true);
+    	
         Link linkObj = new Link();
         linkObj.connect(); // Starts the connection before starting the threads;
         
@@ -12,14 +15,12 @@ public class Main {
         Producer producer = new Producer(linkObj);
         Thread pThread = new Thread(producer);
         
-        TemporaryInterface face = new TemporaryInterface(producer);
+        Common common = new Common();
         
-        Consumer consumer = new Consumer(linkObj, face);
+        Consumer consumer = new Consumer(linkObj, common);
         Thread cThread = new Thread(consumer);
         
         pThread.start();
         cThread.start();
-        
-        // Every time a new app loads, it should load a new main that will create a new thread for each of them and use them to communicate.
     }
 }

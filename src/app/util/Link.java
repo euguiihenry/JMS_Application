@@ -14,6 +14,7 @@ public class Link extends Error {
 		private Connection connection;
 		private Session session;
 		private Topic topic;
+		private Queue queue;
 		private Error error;
 		
 	/* Constructor:
@@ -30,6 +31,7 @@ public class Link extends Error {
 				this.startConnection();
 				this.startSession();
 				this.startTopic();
+				this.startQueue();
 			}
 		
 		/* Connection Factory:
@@ -74,15 +76,13 @@ public class Link extends Error {
 		
 		/* Starting and Getting a Queue for Specific Destination:
 		=====================================================================================*/
-			public Queue getQueue() {
+			public void startQueue() {
 				try {
-					Queue specificDestination = this.session.createQueue("specificDest");
-					return specificDestination;
+					this.queue = this.session.createQueue("specificDest");
 					
 				} catch (JMSException e) {
 					this.error.showError(e);
 					e.printStackTrace();
-					return null;
 				}
 			}
 			
@@ -98,17 +98,9 @@ public class Link extends Error {
 				return this.topic;
 			}
 		
-		/* Probably The Methods Below Will Not Be Necessary in Here:
+		/* Get Queue:
 		=====================================================================================*/
-			public void setClient() {
-				
-			}
-			
-			public void getClients() {
-				
-			}
-			
-			public void getClient(String username) {
-				
+			public Queue getQueue() {
+				return this.queue;
 			}
 }
