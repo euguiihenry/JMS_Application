@@ -28,4 +28,4 @@ Guilherme Henrique & Karen Moreira.
 ## Details:
 
 1. The info displayed in here is the same info displayed in `concepts` doc.
-2. The code have comments that describe what the methods should handle.
+2. The code has comments that describe what the methods should handle/do
