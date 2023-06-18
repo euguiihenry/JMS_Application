@@ -25,4 +25,7 @@ Guilherme Henrique & Karen Moreira.
 
 3. `Room`: This class represents the main application view where messages are displayed. It manages the `Consumer` and `Producer` objects to interact with the server.
 
-The info displayed in here is the same info displayed in concepts doc.
+## Details:
+
+1. The info displayed in here is the same info displayed in `concepts` doc.
+2. The code have comments that describe what the methods should handle.

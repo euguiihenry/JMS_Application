@@ -24,6 +24,7 @@ public class Main {
     /* Create Elements Method:
 	==================================================================================*/
 	    private static void createElements() {
+	    	
 	    	link = new Link();
 	    	producer = new Producer(link);
 	    	producerT = new Thread(producer);

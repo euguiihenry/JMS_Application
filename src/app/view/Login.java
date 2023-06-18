@@ -1,13 +1,11 @@
 package app.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -21,7 +19,7 @@ public class Login extends javax.swing.JFrame{
         this.common = common;
         this.consumer = consumer;
     }
-    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
@@ -45,8 +43,6 @@ public class Login extends javax.swing.JFrame{
         
         ImageIcon img = new ImageIcon(getClass().getResource("chat-icon.png"));
         Image original = img.getImage();
-        int desiredWidth = 100;  // Set the desired width
-        int desiredHeight = 100; // Set the desired height
         Image scaledImage = original.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         

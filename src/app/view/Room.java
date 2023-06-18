@@ -7,21 +7,22 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import java.awt.Toolkit;
-import java.net.URL;
 
 import app.util.Common;
 
 public class Room extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1198313697755943822L;
+	/**
      * Creates new form Room
      */
     public Room() {
         initComponents();        
     }
 
-    @SuppressWarnings("unchecked")
  // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
 	private void initComponents() {
 
@@ -70,8 +71,6 @@ public class Room extends javax.swing.JFrame {
      
      ImageIcon img = new ImageIcon(getClass().getResource("toSend-icon.png"));
      Image original = img.getImage();
-     int desiredWidth = 100;  // Set the desired width
-     int desiredHeight = 100; // Set the desired height
      Image scaledImage = original.getScaledInstance(45, 45, Image.SCALE_SMOOTH);
      ImageIcon scaledIcon = new ImageIcon(scaledImage);
      
