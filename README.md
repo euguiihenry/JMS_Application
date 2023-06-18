@@ -29,3 +29,9 @@ Guilherme Henrique & Karen Moreira.
 
 1. The info displayed in here is the same info displayed in `concepts` doc.
 2. The code has comments that describe what the methods should handle/do.
+
+## Description Images:
+
+![First Image - Login Page](./img/first_pic.png)
+![Second Image - Chat Room Page](./img/second_pic.png)
+![Third Image - Chat Room With Text](.img/third_pic.png)
