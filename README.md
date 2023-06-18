@@ -34,4 +34,4 @@ Guilherme Henrique & Karen Moreira.
 
 ![First Image - Login Page](./img/first_pic.png)
 ![Second Image - Chat Room Page](./img/second_pic.png)
-![Third Image - Chat Room With Text](.img/third_pic.png)
+![Third Image - Chat Room With Text](./img/third_pic.png)
