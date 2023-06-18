@@ -1,9 +1,25 @@
 package app.view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Insets;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import app.util.Common;
+
+@SuppressWarnings("serial")
 public class Login extends javax.swing.JFrame{
 
-    public Login() {
+    public Login(Common common, Thread consumer) {
         initComponents();
+        this.common = common;
+        this.consumer = consumer;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
@@ -26,8 +42,15 @@ public class Login extends javax.swing.JFrame{
         Painel.setMaximumSize(new java.awt.Dimension(350, 320));
         Painel.setMinimumSize(new java.awt.Dimension(350, 320));
         Painel.setPreferredSize(new java.awt.Dimension(350, 320));
-
-        chatIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("chat-icon.png"))); // NOI18N
+        
+        ImageIcon img = new ImageIcon(getClass().getResource("chat-icon.png"));
+        Image original = img.getImage();
+        int desiredWidth = 100;  // Set the desired width
+        int desiredHeight = 100; // Set the desired height
+        Image scaledImage = original.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        
+        chatIcon.setIcon(scaledIcon);
         chatIcon.setAlignmentX(44.0F);
         chatIcon.setAlignmentY(0.0F);
 
@@ -39,8 +62,13 @@ public class Login extends javax.swing.JFrame{
         Subtitle.setText("Bem-vindo");
 
         username.setForeground(new java.awt.Color(153, 153, 153));
-        username.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
-        username.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        username.setBorder(BorderFactory.createCompoundBorder(
+    		new LineBorder(new Color(243, 231, 223), 0, true), new EmptyBorder(0, 5, 0, 5)
+		));       
+        username.setColumns(10);
+        username.setMargin(new Insets(0, 5, 0, 5));
+        
+        //username.setMargin(new java.awt.Insets(0, 0, 0, 0));
         username.setMaximumSize(new java.awt.Dimension(250, 30));
         username.setMinimumSize(new java.awt.Dimension(250, 30));
         username.setName(""); // NOI18N
@@ -48,6 +76,7 @@ public class Login extends javax.swing.JFrame{
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameActionPerformed(evt);
+                interfaceMethods(evt);
             }
         });
 
@@ -57,6 +86,7 @@ public class Login extends javax.swing.JFrame{
         openChat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openChatActionPerformed(evt);
+                interfaceMethods(evt);
             }
         });
 
@@ -104,26 +134,31 @@ public class Login extends javax.swing.JFrame{
         );
 
         pack();
+        
+        setLocationRelativeTo(null);
     }// </editor-fold> 
 
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {
+    	
     }                                        
 
     private void openChatActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    	this.setVisible(false);
-    	new Room().setVisible(true);
+
     }                                        
     
-    //Main de teste
-   /* public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }*/
+    private void interfaceMethods(java.awt.event.ActionEvent evt) {
+    	String usernameText = username.getText();
+    	if (usernameText.isEmpty()) {
+    		String message = "Escolha e insira o seu username para continuar!";
+    		this.error.showMessage(message);
+    	} else {
+    		this.common.setProducerUsername(usernameText);
+        	getRootPane().setDefaultButton(openChat);
+        	this.setVisible(false);
+        	this.common.openRoom(this.common);
+        	this.consumer.start();
+    	}
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JPanel Painel;
@@ -132,6 +167,9 @@ public class Login extends javax.swing.JFrame{
     private javax.swing.JLabel chatIcon;
     private javax.swing.JButton openChat;
     private javax.swing.JTextField username;
+    private Common common;
+    private Error error = new Error();
+    private Thread consumer;
     // End of variables declaration
 
 }

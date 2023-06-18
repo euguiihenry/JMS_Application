@@ -11,8 +11,9 @@ public class Producer extends Link implements Runnable {
 	/* Global Variables:
 	=====================================================================*/
 		Link linkObj;
-		MessageProducer producer;
 		Error errorObj;
+		
+		MessageProducer producer;
 		
 	/* Constructor:
 	=====================================================================*/
@@ -43,7 +44,6 @@ public class Producer extends Link implements Runnable {
 				try {
 					message = this.linkObj.getSession().createTextMessage();
 					message.setText(messageTxt);
-					//message.setStringProperty("Type", "Global");
 					message.setStringProperty("Sender", username);
 					producer.send(message);
 					
@@ -56,19 +56,18 @@ public class Producer extends Link implements Runnable {
 				
 			}
 			
-		/*
+		/* Method to Create Message to a Private Consumer:
 		=================================================================*/
 			public TextMessage sendPrivately(String messageText, String sendBy, String destUsername) {
 				createProducer(this.linkObj.getQueue());
 				TextMessage message = null;
 				
-				
 				try {
-					System.out.println(this.getSession());
 					message = this.linkObj.getSession().createTextMessage();
 					message.setText(messageText);
 					message.setStringProperty("Sender", sendBy);
-					message.setStringProperty("Destination", destUsername);
+					message.setStringProperty("Destination", destUsername);					
+					System.out.println(message);
 					producer.send(message);
 					
 					

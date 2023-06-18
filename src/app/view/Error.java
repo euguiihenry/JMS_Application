@@ -16,4 +16,8 @@ public class Error {
 			JOptionPane.showMessageDialog(frame, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
+		public void showMessage(String message) {
+			this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+			JOptionPane.showMessageDialog(frame, message);
+		}
 }

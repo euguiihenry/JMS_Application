@@ -3,24 +3,49 @@ package app.util;
 import app.view.*;
 
 public class Main {
-    public static void main(String[] args) {
-    	Login login = new Login();
-    	login.setVisible(true);
-    	
-        Link linkObj = new Link();
-        linkObj.connect(); // Starts the connection before starting the threads;
-        
-        
-        
-        Producer producer = new Producer(linkObj);
-        Thread pThread = new Thread(producer);
-        
-        Common common = new Common();
-        
-        Consumer consumer = new Consumer(linkObj, common);
-        Thread cThread = new Thread(consumer);
-        
-        pThread.start();
-        cThread.start();
-    }
+	/* Variables:
+	==================================================================================*/
+		private static Login login;
+		private static Link link;
+		private static Room room;
+		private static Common common;
+		private static Producer producer;
+		private static Thread producerT;
+		private static Thread consumer;
+		
+	/* Main:
+	==================================================================================*/
+	    public static void main(String[] args) {
+	    	createElements();
+	    	startMethods();
+	    	startThreads();
+	    }
+    
+    /* Create Elements Method:
+	==================================================================================*/
+	    private static void createElements() {
+	    	link = new Link();
+	    	producer = new Producer(link);
+	    	producerT = new Thread(producer);
+	    	room = new Room();
+	    	common = new Common(producer, room);
+	    	
+	    	consumer = new Thread(new Consumer(link, common));
+	    	login = new Login(common, consumer);
+	    	
+	    	
+	    }
+	    
+    /* Start Methods Method:
+	==================================================================================*/
+	    private static void startMethods() {
+	    	link.connect();
+	    	login.setVisible(true);
+	    }
+	    
+    /* Start Threads Method:
+	==================================================================================*/
+	    private static void startThreads() {
+	    	producerT.start();
+	    }
 }
